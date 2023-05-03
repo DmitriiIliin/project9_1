@@ -1,9 +1,29 @@
-
 package ru.netology.project9.project9mvn.services;
 
 public class Radio {
+    private int minNumberStation = 0;
+    private int maxNumberStation = 9;
+    private int currentNumberStation = minNumberStation;
+    private int minVolume = 0;
+    private int maxVolume = 100;
+    private int currentVolume = minVolume;
     private int numberStation;
     private int levelVolume;
+
+    public Radio(int countStation) {
+        minNumberStation = 0;
+        maxNumberStation = countStation - 1;
+        currentNumberStation = numberStation;
+
+        this.maxVolume = maxVolume;
+        this.minVolume = minVolume;
+        currentVolume = levelVolume;
+    }
+
+    public Radio() {
+
+    }
+
 
     public int getNumberStation() {
         return numberStation;
@@ -14,21 +34,21 @@ public class Radio {
     }
 
     public void setNumberStation(int newNumberStation) {
-        if (newNumberStation < 0) {
-            newNumberStation = 9;
+        if (newNumberStation < minNumberStation) {
+            newNumberStation = maxNumberStation;
         }
-        if (newNumberStation > 9) {
-            newNumberStation = 0;
+        if (newNumberStation > maxNumberStation) {
+            newNumberStation = minNumberStation;
         }
         numberStation = newNumberStation;
     }
 
     public void setLevelVolume(int newLevelVolume) {
-        if (newLevelVolume < 0) {
-            newLevelVolume = 0;
+        if (newLevelVolume < minVolume) {
+            newLevelVolume = minVolume;
         }
-        if (newLevelVolume > 100) {
-            newLevelVolume = 100;
+        if (newLevelVolume > maxVolume) {
+            newLevelVolume = maxVolume;
         }
         levelVolume = newLevelVolume;
     }
@@ -36,31 +56,32 @@ public class Radio {
 
     public void beforeNumberStation() {
         numberStation = numberStation - 1;
-        if (numberStation < 0) {
-            numberStation = 9;
+        if (numberStation < minNumberStation) {
+            numberStation = maxNumberStation;
         }
 
     }
 
     public void afterNumberStation() {
         numberStation = numberStation + 1;
-        if (numberStation > 9) {
-            numberStation = 0;
+        if (numberStation > maxNumberStation) {
+            numberStation = minNumberStation;
         }
 
     }
 
     public void beforeLevelVolume() {
         levelVolume = levelVolume - 1;
-        if (levelVolume < 0) {
-            levelVolume = 0;
+        if (levelVolume < minVolume) {
+            levelVolume = minVolume;
         }
     }
 
     public void afterLevelVolume() {
         levelVolume = levelVolume + 1;
-        if (levelVolume > 100) {
-            levelVolume = 100;
+        if (levelVolume > maxVolume) {
+            levelVolume = maxVolume;
         }
     }
 }
+
